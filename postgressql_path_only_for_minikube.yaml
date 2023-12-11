@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+   matchLabels:
+    app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          imagePullPolicy: "IfNotPresent"
+          env:
+           - name: POSTGRES_USER
+             valueFrom:
+               secretKeyRef:
+                 name: postgres-secret
+                 key: postgres-root-username
+           - name: POSTGRES_PASSWORD
+             valueFrom:
+               secretKeyRef:
+                 name: postgres-secret
+                 key: postgres-root-password
+           - name: POSTGRES_DB
+             valueFrom:
+               configMapKeyRef:
+                 name: postgres-configmap
+                 key: postgres-dbname
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data #容器裡掛載路徑
+              name: postgredb                     #volume名稱，對應下方
+      volumes:
+        - name: postgredb                         #volume名稱
+          hostPath:
+            path: /data/postgre-data                # 節點上的路径 
+            type: DirectoryOrCreate               # 指向一個目錄，不存在時自動創建
