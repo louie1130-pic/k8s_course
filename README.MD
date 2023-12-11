@@ -12,5 +12,8 @@ podman exec -it minikube /bin/sh
 ### scale to 0
 kubectl scale deployment postgres --replicas=0
 
+### create secret for pgadmin
+kubectl apply -f pgadmin-secret.yaml
+
 ### pgadmin
 kubectl apply -f pgadmin-deploy.yaml
