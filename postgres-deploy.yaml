@@ -39,49 +39,46 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: postgres-pv-claim
+            claimName: postgres-pv-claim            
 ---
-    kind: PersistentVolume
-    apiVersion: v1
-    metadata:
-      name: postgres-pv-volume
-      labels:
-        type: local
-        app: postgres
-    spec:
-      storageClassName: manual
-      capacity:
-        storage: 5Gi
-      accessModes:
-        - ReadWriteMany
-      hostPath:
-        path: /c/pod_volume_db-data/mnt/data
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /var/lib/data
 ---
-    kind: PersistentVolumeClaim
-    apiVersion: v1
-    metadata:
-      name: postgres-pv-claim
-      labels:
-        app: postgres
-    spec:
-      storageClassName: manual
-      accessModes:
-        - ReadWriteMany
-      resources:
-        requests:
-          storage: 5Gi
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-pv-claim
+  labels:
+    app: postgres
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: postgres
-      labels:
-        app: postgres
-    spec:
-       ports:
-        - name: postgres
-          port: 5432
-          nodePort: 30432
-       type: NodePort
-       selector:
-        app: postgres
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  ports:
+  - name: postgres
+    port: 5432
+    nodePort: 30432
+  type: NodePort
+  selector:
+    app: postgres
