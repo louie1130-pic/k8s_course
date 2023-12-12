@@ -20,3 +20,5 @@ mypassword
 ### 建立pgadmin
 kubectl apply -f pgadmin-deploy.yaml
 
+
+
