@@ -17,5 +17,6 @@ kubectl scale deployment postgres --replicas=0
 kubectl apply -f pgadmin-secret.yaml
 mypassword
 
-### pgadmin
+### 建立pgadmin
 kubectl apply -f pgadmin-deploy.yaml
+
