@@ -1,6 +1,7 @@
 ### psql
 psql -U root -d mydb -W
-mypassword
+pw=mypassword
+db_name=mydb
 
 create table my_table(a varchar(100));
 insert into my_table values('1234567890');
@@ -14,6 +15,7 @@ kubectl scale deployment postgres --replicas=0
 
 ### create secret for pgadmin
 kubectl apply -f pgadmin-secret.yaml
+mypassword
 
 ### pgadmin
 kubectl apply -f pgadmin-deploy.yaml
