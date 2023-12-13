@@ -21,4 +21,4 @@ mypassword
 kubectl apply -f pgadmin-deploy.yaml
 
 
-
+host=192.168.49.2 port=30432 dbname=mydb user=root password=xxxxxxx sslmode=prefer connect_timeout=10 sslcert=<STORAGE_DIR>/.postgresql/postgresql.crt sslkey=<STORAGE_DIR>/.postgresql/postgresql.key

@@ -1,3 +1,4 @@
+#kubectl apply -f pgadmin-deploy.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
