@@ -8,6 +8,6 @@ minikube tunnel --cleanup
 創建服務
 kubectl create deployment hello-minikube1 --image=registry.cn-hangzhou.aliyuncs.com/google_containers/echoserver:1.10
 
-kubectl expose deployment hello-minikube1 --=LoadBalancer --port=8000
+kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8000
 
 export  PORT=$(kubectl get svc hello-minikube1 -o go-template='{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}'
