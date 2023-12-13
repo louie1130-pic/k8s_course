@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eks-sample-linux-deployment
+  name: demo-nginx-app-deployment
   labels:
-    app: eks-sample-linux-app
+    app: demo-nginx-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: eks-sample-linux-app
+      app: demo-nginx-app
   template:
     metadata:
       labels:
-        app: eks-sample-linux-app
+        app: demo-nginx-app
     spec:
       containers:
       - name: nginx
@@ -27,12 +27,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eks-sample-linux-service
+  name: demo-nginx-app-service
   labels:
-    app: eks-sample-linux-app
+    app: demo-nginx-app
 spec:
   selector:
-    app: eks-sample-linux-app
+    app: demo-nginx-app
   ports:
     - protocol: TCP
       port: 80
