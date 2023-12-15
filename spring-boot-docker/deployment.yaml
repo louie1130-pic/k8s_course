@@ -1,0 +1,38 @@
+# create deployment yaml  sample for spring boot
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+        - name: spring-boot-container
+          image: docker.io/library/spring-hellowworld-image:v1.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+# ---
+# #service:
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: spring-boot-app-service
+#   labels:
+#     app: spring-boot-app
+# spec: 
+#   selector:
+#     app: spring-boot-app
+#   ports:
+#   type: NodePort
+  
+
+
+
