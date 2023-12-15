@@ -28,3 +28,42 @@ minikube service spring-boot-app --url
 
 ## 看log
  kubectl logs -l app=spring-boot-app --all-containers
+
+
+# 匯出imge檔方式部屬
+
+### 修改檔案
+
+### 打包
+mvn clean install
+
+### 本機unit test
+java -jar .\target\spring-boot-docker-0.0.1-SNAPSHOT.jar
+
+### 透過Podman建立image
+podman build -t spring-hellowworld-image:v1.3 -f ./Dockerfile .
+
+### podman匯出tar檔
+podman save > spring-hellowworld-image1_3.tar localhost/spring-hellowworld-image:v1.3 
+
+### minikube匯入
+minikube image load .\spring-hellowworld-image1_3.tar
+    Examples:
+    minikube image load image
+    minikube image load image.tar
+
+    Options:
+        --daemon=false:
+            Cache image from docker daemon
+
+        --overwrite=true:
+            Overwrite image even if same image:tag name exists
+
+        --pull=false:
+            Pull the remote image (no caching)
+
+        --remote=false:
+            Cache image from remote registry
+
+
+# CICD部屬
