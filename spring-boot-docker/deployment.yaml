@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-container
-          image: docker.io/library/spring-hellowworld-image-d:v1.3
+          image: docker.io/library/spring-hellowworld-image:v1.5
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
