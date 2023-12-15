@@ -45,6 +45,7 @@ podman build -t spring-hellowworld-image:v1.3 -f ./Dockerfile .
 
 ### podman匯出tar檔
 podman save > spring-hellowworld-image1_3.tar localhost/spring-hellowworld-image:v1.3 
+podman save -o spring-hellowworld-image1_3-oci.tar --format=oci-archive localhost/spring-hellowworld-image:v1.3
 
 ### minikube匯入
 minikube image load .\spring-hellowworld-image1_3.tar
@@ -65,5 +66,8 @@ minikube image load .\spring-hellowworld-image1_3.tar
         --remote=false:
             Cache image from remote registry
 
+kubectl apply -f deployment.yaml
+
+### 建
 
 # CICD部屬

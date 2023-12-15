@@ -27,7 +27,13 @@ public class SpringBootDockerApplication {
         public String one() {
                 logger.info("Hello log One");
                 return "Hello World One";
-        }		
+        }	
+
+        @RequestMapping("/two")
+        public String two() {
+                logger.info("Hello log Two");
+                return "Hello World Two";
+        }
  
         // public static void main(String[] args) {
         //         SpringApplication.run(SpringBootDockerApplication.class, args);
