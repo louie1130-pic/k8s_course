@@ -1,3 +1,12 @@
+# Prerequiest
+## minikube
+minikube version: v1.31.2
+
+
+## vs code
+Version: 1.85.0 (user setup)
+
+
 # 一般打包手動部屬
 
 ## 建立image
@@ -11,7 +20,7 @@ java -jar .\target\spring-boot-docker-0.0.1-SNAPSHOT.jar
 
 ### 透過Dockerfile建立image
 minikube image build -t spring-hellowworld-image:v1.2 -f ./Dockerfile .
-
+minikube image build -t spring-hellowworld-image-ms:v1.0 -f ./Dockerfile_m .
 
 ## 建立deployment
 kubectl apply -f .\deployment.yaml 
@@ -75,6 +84,23 @@ minikube image load docker.io/library/spring-hellowworld-image:v1.5
 
 kubectl apply -f deployment.yaml
 
+#### 修改為multi stage測試
+###  ADD Dockerfile_m(multi stage)
+#### 打包
+minikube image build -t spring-hellowworld-image-ms:v1 -f ./Dockerfile_m .
 
+### 檢視
+minikube image ls --format table
+|----------------------------------------------------|----------------------|---------------|--------|
+|                       Image                        |         Tag          |   Image ID    |  Size  |
+|----------------------------------------------------|----------------------|---------------|--------|
+| docker.io/library/spring-hellowworld-image-ms      | v1.0                 | a02cec73dbf0a | 197MB  |
+|----------------------------------------------------|----------------------|---------------|--------|
 
-# CICD部屬
+#### 修改版本並布署
+kubectl apply -f .\deployment.yaml 
+#### 露出Service
+kubectl expose deployment spring-boot-app --type=NodePort --port=8080
+kubectl expose deployment spring-boot-app --type=NodePort --port=8080 target-port=8080
+#### Get URL
+minikube service spring-boot-app --url
