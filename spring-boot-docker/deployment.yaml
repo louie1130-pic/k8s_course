@@ -7,6 +7,11 @@ metadata:
     app: hello-app
 spec:
   replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1 # 可以比desire replicas多出來的Pod數量
+      maxUnavailable: 1  # 在任何時間點只有一個Pod可以處於不可用狀態
   selector:
     matchLabels:
       app: spring-boot-app
@@ -17,7 +22,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-container
-          image: docker.io/library/spring-hellowworld-image-ms:v1
+          image: docker.io/library/spring-hellowworld-image-ms:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

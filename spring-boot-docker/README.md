@@ -104,3 +104,14 @@ kubectl expose deployment spring-boot-app --type=NodePort --port=8080
 kubectl expose deployment spring-boot-app --type=NodePort --port=8080 target-port=8080
 #### Get URL
 minikube service spring-boot-app --url
+
+### 更新
+#### rollout restart check OK
+kubectl rollout restart deployment/spring-boot-app 
+kubectl rollout status deployment/spring-boot-app 
+kubectl rollout undo deployment/spring-boot-app 
+kubectl rollout history deployment/spring-boot-app
+
+kubectl set image deployments/spring-boot-app spring-hellowworld-image-ms:latest
+
+

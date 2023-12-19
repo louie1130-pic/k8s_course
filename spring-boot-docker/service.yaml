@@ -8,7 +8,6 @@ metadata:
 spec: 
   selector:
     app: spring-boot-app
-    k8s-app: spring-boot-app
   ports:
     - protocol: TCP
       port: 8080

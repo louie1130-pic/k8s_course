@@ -1,17 +1,30 @@
 # Package stage
-FROM maven:3.9.5-eclipse-temurin-17-focal AS build
+FROM maven:3.8.2-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
 COPY . .
 
-#RUN mvn -f /app/pom.xml clean package -DskipTests
-CMD ["./mvnw", "spring-boot:run"]
+#RUN mvn dependency:go-offline
+
+# RUN mvn clean install
+#CMD ["./mvnw", "spring-boot:run"]
+
+#####
+#COPY . .
+
+
+RUN mvn -f /app/pom.xml clean package -DskipTests
+#CMD ["./mvnw", "spring-boot:run"]
+#RUN chmod +x ./mvnw && ./mvnw -s .mvn/settings.xml -B -f /app/pom.xml dependency:resolve-plugins dependency:resolve dependency:go-offline
+####
+
 
 # Build stage
 FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /usr/local/lib
+#WORKDIR /app
 
 COPY --from=build /app/target/spring-boot-docker-0.0.1-SNAPSHOT.jar spring-boot-docker-0.0.1-SNAPSHOT.jar
 
