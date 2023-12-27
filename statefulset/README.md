@@ -11,4 +11,6 @@ clusterIP: None
 
 ## REF
 https://www.bogotobogo.com/DevOps/Docker/Docker_Kubernetes_StatefulSet.php
+
+How to Deploy PostgreSQL Statefulset in Kubernetes With High Availability
 https://devopscube.com/deploy-postgresql-statefulset/
