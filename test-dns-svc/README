@@ -1,1 +1,18 @@
+### PYTHON
 https://www.bogotobogo.com/DevOps/Docker/Docker_Kubernetes_DNS_with_Pods_Services.php
+kubectl create -f deployment.yaml
+
+### 接著需要建立servie來discover deployment's pods並將client requests導至他們
+kubectl create -f service.yaml
+
+### 可下以下指令看service狀態
+kubectl get svc -o wide
+NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE     SELECTOR
+kubernetes     ClusterIP   10.96.0.1       <none>        443/TCP     6d19h   <none>
+test-service   ClusterIP   10.97.46.35     <none>        4000/TCP    9s      app=test-pod
+
+### 建立client pod
+kubectl create -f curlpod.yaml
+
+
+### The network is limited if using the Docker driver on Darwin, Windows, or WSL, and the Node IP is not reachable directly.

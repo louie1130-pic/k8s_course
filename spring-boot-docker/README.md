@@ -62,6 +62,7 @@ minikube image load .\spring-hellowworld-image1_3.tar
 #### 在podman使用tar檔會找不到，建議使用cache(minikube cache add docker.io/library/spring-hellowworld-image:v1.4)驗證可用，但docker打包成tar檔 load進minikube沒問題
 
 
+
 minikube image load docker.io/library/spring-hellowworld-image:v1.5
 #### (測試成功)是可以查到，所以本機不需要特別匯出tar檔
 
@@ -88,6 +89,7 @@ kubectl apply -f deployment.yaml
 ###  ADD Dockerfile_m(multi stage)
 #### 打包
 minikube image build -t spring-hellowworld-image-ms:v1 -f ./Dockerfile_m .
+minikube image build -t spring-hellowworld-image-ms:v1 -f ./Dockerfile .
 
 ### 檢視
 minikube image ls --format table

@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-redis
+  labels:
+    app: redis
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      targetPort: 6379
+      protocol: TCP
+      name: redis
+  selector:
+    app: my-app-redis
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-app-redis
+spec:
+  serviceName: my-app-redis
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app-redis
+  template:
+    metadata:
+      labels:
+        app: my-app-redis
+    spec:
+      containers:
+      - name: my-app-redis
+        image: redis:5.0.5
+        args: ["--appendonly", "yes", "--save", "600", "1"] 
+        ports:
+          - name: redis
+            containerPort: 6379
+            protocol: TCP
+        volumeMounts:
+          - name: data
+            mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+             

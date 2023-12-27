@@ -43,8 +43,8 @@ public class SpringBootDockerApplication {
 
         @RequestMapping("/ms")
         public String ms() {
-                logger.info("Hello ms latest 1");
-                return "Hello World ms latest 1";
+                logger.info("Hello ms latest 2");
+                return "Hello World ms latest 2";
         }         
 
  
