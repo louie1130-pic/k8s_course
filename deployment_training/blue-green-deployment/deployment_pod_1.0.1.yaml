@@ -4,18 +4,18 @@ metadata:
   name: petclinic
   labels:
     app: petclinic
-    version: v1.0.1
+    version: 1.0.1.RELEASE
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: petclinic
-      version: v1.0.1
+      version: 1.0.1.RELEASE
   template:
     metadata:
       labels:
         app: petclinic
-        version: v1.0.1
+        version: 1.0.1.RELEASE
     spec:
       containers:
       - name: petclinic

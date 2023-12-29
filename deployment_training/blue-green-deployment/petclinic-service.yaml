@@ -11,5 +11,5 @@ spec:
       targetPort: 8080
   selector:
     app: petclinic
-    version: v1.0.0 #修改selector version標記為v1.0.1
+    version: 1.0.1.RELEASE #修改selector version標記為v1.0.1
   type: NodePort
