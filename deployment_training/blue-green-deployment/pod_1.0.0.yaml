@@ -1,0 +1,12 @@
+apiVersion: v1 #該元件的版本號
+kind: Pod #元件屬性
+metadata:
+name: petclinic-v1.0.0 #pod名稱
+labels: 
+     app: petclinic
+     version: v1.0.0  #version標記為v1.0.0
+spec: 
+containers:
+- name: petclinic #containers 名稱
+image: spring2go/spring-petclinic:1.0.0.RELEASE #version標記為v1.0.0
+              #指定 Container 要使用哪個 Image 會從Docker hub pull
