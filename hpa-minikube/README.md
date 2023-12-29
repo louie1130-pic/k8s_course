@@ -62,7 +62,7 @@ kubectl get hpa -n hpa
 NAME             REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 php-apache-hpa   Deployment/php-apache   18%/50%   1         10        1          10m
 ```
-
+```
 NAME             REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
 php-apache-hpa   Deployment/php-apache   <unknown>/30%   1         10        0          8s
 php-apache-hpa   Deployment/php-apache   0%/30%          1         10        1          15s
@@ -71,10 +71,11 @@ php-apache-hpa   Deployment/php-apache   20%/30%         1         10        1  
 php-apache-hpa   Deployment/php-apache   19%/30%         1         10        1          2m45s
 php-apache-hpa   Deployment/php-apache   58%/30%         1         10        1          3m45s
 php-apache-hpa   Deployment/php-apache   58%/30%         1         10        2          4m
-
+```
 #### 開始擴展
-
+```
 NAME                          READY   STATUS    RESTARTS   AGE
 load-generator                1/1     Running   0          32m
 php-apache-69f9bc5fd5-q2jh9   1/1     Running   0          7s
 php-apache-69f9bc5fd5-zssgs   1/1     Running   0          39m
+```
