@@ -93,12 +93,13 @@ minikube image build -t spring-hellowworld-image-ms:v1 -f ./Dockerfile .
 
 ### 檢視
 minikube image ls --format table
+```
 |----------------------------------------------------|----------------------|---------------|--------|
 |                       Image                        |         Tag          |   Image ID    |  Size  |
 |----------------------------------------------------|----------------------|---------------|--------|
 | docker.io/library/spring-hellowworld-image-ms      | v1.0                 | a02cec73dbf0a | 197MB  |
 |----------------------------------------------------|----------------------|---------------|--------|
-
+```
 #### 修改版本並布署
 kubectl apply -f .\deployment.yaml 
 #### 露出Service
