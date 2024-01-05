@@ -118,3 +118,41 @@ kubectl rollout history deployment/spring-boot-app
 kubectl set image deployments/spring-boot-app spring-hellowworld-image-ms:latest
 
 
+## 2024/1/5 adot test
+docker build -t spring-hellowworld-image:v0.1 -f ./Dockerfile .
+
+
+aws ecr create-repository --repository-name spring-hellowworld-image --region ap-northeast-1
+
+
+```
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:ap-northeast-1:384533264466:repository/spring-hellowworld-image",
+        "registryId": "384533264466",
+        "repositoryName": "spring-hellowworld-image",
+        "repositoryUri": "384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image",
+        "createdAt": "2024-01-05T06:19:33+00:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": {
+            "scanOnPush": false
+        },
+        "encryptionConfiguration": {
+            "encryptionType": "AES256"
+        }
+    }
+}
+
+```
+
+#### ReTag
+docker tag spring-hellowworld-image:v0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
+
+#### push ecr
+aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com
+
+docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
+
+
+
+
