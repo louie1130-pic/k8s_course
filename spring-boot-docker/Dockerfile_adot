@@ -1,0 +1,47 @@
+# Package stage
+FROM maven:3.8.2-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+COPY . .
+
+#RUN mvn dependency:go-offline
+
+# RUN mvn clean install
+#CMD ["./mvnw", "spring-boot:run"]
+
+#####
+#COPY . .
+
+
+RUN mvn -f /app/pom.xml clean package -DskipTests
+#CMD ["./mvnw", "spring-boot:run"]
+#RUN chmod +x ./mvnw && ./mvnw -s .mvn/settings.xml -B -f /app/pom.xml dependency:resolve-plugins dependency:resolve dependency:go-offline
+####
+
+
+# Build stage
+FROM eclipse-temurin:17-jre-alpine
+
+
+ADD https://github.com/aws-observability/aws-otel-java-instrumentation/releases/download/v1.17.0/aws-opentelemetry-agent.jar /app/aws-opentelemetry-agent.jar
+ENV JAVA_TOOL_OPTIONS "-javaagent:/app/aws-opentelemetry-agent.jar"
+
+
+WORKDIR /usr/local/lib
+#WORKDIR /app
+
+COPY --from=build /app/target/spring-boot-docker-0.0.1-SNAPSHOT.jar spring-boot-docker-0.0.1-SNAPSHOT.jar
+
+# OpenTelemetry agent configuration
+ENV OTEL_TRACES_SAMPLER "always_on"
+ENV OTEL_PROPAGATORS "tracecontext,baggage,xray"
+#ENV OTEL_RESOURCE_ATTRIBUTES "service.name=${APP_NAME},service.namespace=${APP_NAME}"
+ENV OTEL_RESOURCE_ATTRIBUTES "service.name=PetSearch"
+ENV OTEL_IMR_EXPORT_INTERVAL "10000"
+# OTEL_EXPORTER_OTLP_ENDPOINT 的預設值是 http://localhost:4317，所以註解掉
+# ENV OTEL_EXPORTER_OTLP_ENDPOINT "http://localhost:4317"
+ENV OTEL_METRICS_EXPORTER "none"
+
+
+ENTRYPOINT ["java","-jar","spring-boot-docker-0.0.1-SNAPSHOT.jar"]
