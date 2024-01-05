@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: Always
         - env:
             - name: AWS_REGION
-              value: <YOUR_AWS_REGION>
+              value: ap-northeast-1
             - name: LISTEN_ADDRESS
               value: 0.0.0.0:4567
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
