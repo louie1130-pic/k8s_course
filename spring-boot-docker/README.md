@@ -161,6 +161,12 @@ docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld
 
 docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1
 
+curl spring-boot-app:8080/
+
+#### GET Endpoint
+kubectl get service spring-boot-app -o wide
+
+
 
 
 
