@@ -120,13 +120,13 @@ kubectl set image deployments/spring-boot-app spring-hellowworld-image-ms:latest
 
 ## 2024/1/5 adot test
 
-#### Docker Build
-<!-- docker build -t spring-hellowworld-image:v0.1 -f ./Dockerfile . -->
-docker build -t spring-hellowworld-image:a0.2 -f ./Dockerfile_adot .
+### Docker Build
+##### docker build -t spring-hellowworld-image:v0.1 -f ./Dockerfile .
+docker build -t spring-hellowworld-image:a0.3 -f ./Dockerfile_adot .
 
 
-###### 建ECR Repository
-<!-- aws ecr create-repository --repository-name spring-hellowworld-image --region ap-northeast-1 -->
+### 建ECR Repository
+##### aws ecr create-repository --repository-name spring-hellowworld-image --region ap-northeast-1
 
 
 ```
@@ -149,28 +149,28 @@ docker build -t spring-hellowworld-image:a0.2 -f ./Dockerfile_adot .
 
 ```
 
-#### ReTag
-<!-- docker tag spring-hellowworld-image:v0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1 -->
+### ReTag
+##### docker tag spring-hellowworld-image:v0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
 ##### OR
-docker tag spring-hellowworld-image:a0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.2
+docker tag spring-hellowworld-image:a0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.3
 
-#### login ECR
-<!-- aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com -->
+### login ECR
+##### aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com
 
-#### push ECR
-<!-- docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1 -->
+### push ECR
+##### docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
 
-docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.2
+docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.3
 
-#### 布署
+### 布署
 kubectl apply -f deployment.yaml
 
-#### 測試
+### 測試
 kubectl exec -it curlpod -- /bin/sh
 
 curl spring-boot-app:8080/ver
 
-#### GET Endpoint
+### GET Endpoint
 kubectl get service spring-boot-app -o wide
 
 
