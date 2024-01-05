@@ -166,8 +166,6 @@ docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld
 kubectl apply -f deployment.yaml
 
 #### 測試
-
-
 kubectl exec -it curlpod -- /bin/sh
 
 curl spring-boot-app:8080/ver
