@@ -37,8 +37,8 @@ public class SpringBootDockerApplication {
 
         @RequestMapping("/ver")
         public String ver() {
-                logger.info("Hello v1.6");
-                return "Hello World v1.6";
+                logger.info("Hello a0.2");
+                return "Hello World a0.2";
         } 
 
         @RequestMapping("/ms")
