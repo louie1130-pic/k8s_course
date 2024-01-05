@@ -23,7 +23,7 @@ spec:
       containers:
         - name: spring-boot-container
           # image: docker.io/library/spring-hellowworld-image-ms:latest
-          image: 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1
+          image: 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.2
           imagePullPolicy: Always
         - env:
             - name: AWS_REGION
