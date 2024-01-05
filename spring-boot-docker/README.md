@@ -119,9 +119,13 @@ kubectl set image deployments/spring-boot-app spring-hellowworld-image-ms:latest
 
 
 ## 2024/1/5 adot test
+
+#### Docker Build
 docker build -t spring-hellowworld-image:v0.1 -f ./Dockerfile .
+docker build -t spring-hellowworld-image:a0.1 -f ./Dockerfile_adot .
 
 
+#### 建ECR Repository
 aws ecr create-repository --repository-name spring-hellowworld-image --region ap-northeast-1
 
 
@@ -148,10 +152,14 @@ aws ecr create-repository --repository-name spring-hellowworld-image --region ap
 #### ReTag
 docker tag spring-hellowworld-image:v0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
 
+docker tag spring-hellowworld-image:a0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1
+
 #### push ecr
 aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com
 
 docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
+
+docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1
 
 
 
