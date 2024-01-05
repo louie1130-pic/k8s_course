@@ -27,6 +27,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>software.amazon.opentelemetry</groupId>
+			<artifactId>aws-opentelemetry-agent</artifactId>
+			<version>1.32.0</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
