@@ -154,9 +154,10 @@ docker tag spring-hellowworld-image:v0.1 384533264466.dkr.ecr.ap-northeast-1.ama
 
 docker tag spring-hellowworld-image:a0.1 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1
 
-#### push ecr
+#### login ECR
 aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com
 
+#### push ECR
 docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:v0.1
 
 docker push 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1

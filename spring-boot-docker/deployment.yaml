@@ -25,6 +25,15 @@ spec:
           # image: docker.io/library/spring-hellowworld-image-ms:latest
           image: 384533264466.dkr.ecr.ap-northeast-1.amazonaws.com/spring-hellowworld-image:a0.1
           imagePullPolicy: Always
+        - env:
+            - name: AWS_REGION
+              value: <YOUR_AWS_REGION>
+            - name: LISTEN_ADDRESS
+              value: 0.0.0.0:4567
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://my-collector-xray-collector:4317
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.namespace=helloStarted,service.name=helloStartedService          
           ports:
             - containerPort: 8080
           resources: 
